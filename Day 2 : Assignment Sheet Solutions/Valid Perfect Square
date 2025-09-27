@@ -1,0 +1,36 @@
+**Code**
+
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        int sqrt1 = (int)Math.sqrt(num);
+        return sqrt1*sqrt1 == num;
+    }
+}
+
+
+**Time Complexity** :  O(1)
+**Space Complexity** : O(1)
+
+
+
+**Testcase1**
+
+Input
+num = 14
+
+Output
+false
+
+Expected
+false
+
+**Testcase2**
+
+Input
+num = 16
+
+Output
+true
+
+Expected
+true
