@@ -1,0 +1,67 @@
+                                                                     Code
+
+
+
+class Solution {
+    private int[] drow = {-1,+1,0,0};
+    private int[]dcol =  {0,0,-1,+1};
+    public void helper(int n ,int m,int cr,int cc,char[][]grid){
+        if(cr<0 || cr>=n || cc<0 || cc>=m || grid[cr][cc]!='1'){
+            return ;
+        }
+        grid[cr][cc] = '0';
+        for(int i=0;i<4;i++){
+            helper(n,m,cr+drow[i],cc+dcol[i],grid);
+        }       
+    }
+    public int numIslands(char[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int cnt = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j] == '1'){
+                    helper(n,m,i,j,grid);
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+}
+
+
+                                                                     Complexity Analysis
+
+
+Time Complexity :  O((m * n)) 
+Space Compelexity : O(1)
+
+
+
+                                                                        Testcases
+
+
+
+Testcase 1
+
+
+Input
+
+grid = [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]
+
+Output
+1
+Expected
+1
+
+Testcase 2
+
+Input
+
+grid = [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]
+
+Output
+3
+Expected
+3
