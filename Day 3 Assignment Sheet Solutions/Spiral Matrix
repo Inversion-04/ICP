@@ -1,0 +1,71 @@
+                                                                                           Code
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+
+        int n = matrix.length;
+        int m = matrix[0].length;
+        ArrayList<Integer> ds = new ArrayList<>();
+
+        int top = 0;
+        int left = 0;
+        int right = m - 1;
+        int bottom = n - 1;
+
+        int total = 0;
+        while (total < n * m) {
+            for (int i = left; i <= right && total < m * n; i++) {
+                ds.add(matrix[top][i]);
+                total++;
+            }
+            top++;
+            for (int j = top; j <= bottom && total < m * n; j++) {
+                ds.add(matrix[j][right]);
+                total++;
+            }
+            right--;
+            for (int k = right; k >= left && total < m * n; k--) {
+                ds.add(matrix[bottom][k]);
+                total++;
+            }
+            bottom--;
+            for (int p = bottom; p >= top && total < m * n; p--) {
+                ds.add(matrix[p][left]);
+                total++;
+            }
+            left++;
+        }
+        return ds;
+    }
+}
+                                                                                      Complexity Analysis
+
+Time Complexity :  O(m*n)
+Space Compelexity : O(n)
+
+
+
+                                                                                            Testcases
+
+
+Testcase 1
+
+Input
+
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+
+Output
+[1,2,3,6,9,8,7,4,5]
+Expected
+[1,2,3,6,9,8,7,4,5]
+
+Testcase 2
+
+Input
+
+matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+
+Output
+[1,2,3,4,8,12,11,10,9,5,6,7]
+Expected
+[1,2,3,4,8,12,11,10,9,5,6,7]
