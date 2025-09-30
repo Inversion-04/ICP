@@ -1,0 +1,77 @@
+                                                                                            Code
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int l = 0;
+        int r = 0;
+        int n = s.length();
+        int max = 0;
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        while (r < n) {
+            char ch = s.charAt(r);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+
+            while (map.get(ch) > 1) {
+                char lchar = s.charAt(l);
+                map.put(lchar, map.get(lchar) - 1);
+                if (map.get(lchar) == 0) {
+                    map.remove(lchar);
+                }
+                l++;
+            }
+            max = Math.max(max, r - l + 1);
+            r++;
+        }
+
+        return max;
+
+    }
+}
+
+
+ 
+                                                                                        Complexity Analysis
+
+
+Time Complexity :  O(n)
+Space Complexity : O(n)
+
+                                                                                              Testcases
+
+
+
+Testcase1
+
+Input
+
+s = "abcabcbb"
+
+Output
+3
+Expected
+3
+
+
+Testcase 2
+
+ Input
+
+s = "bbbbb"
+
+Output
+1
+Expected
+1
+
+Testcase 3 
+
+Input
+
+s = "pwwkew"
+
+Output
+3
+Expected
+3
