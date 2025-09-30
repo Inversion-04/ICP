@@ -1,0 +1,70 @@
+                                                                                                Code
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int l = 0;
+        int r = 0;
+        int max_len = 0;
+        int max_freq = 0;
+        int n = s.length();
+        int[] hash = new int[26];
+        int changes = 0;
+        while (r < n) {
+
+            hash[s.charAt(r) - 'A']++;
+            max_freq = Math.max(max_freq, hash[s.charAt(r) - 'A']);
+            changes = (r - l + 1) - max_freq;
+
+            if (changes > k) {
+                max_freq = 0;
+                hash[s.charAt(l) - 'A']--;
+                l = l + 1;
+            }
+
+            if (changes <= k) {
+                max_len = Math.max(max_len, r - l + 1);
+            }
+            r++;
+        }
+        return max_len;
+    }
+}
+
+
+
+
+
+                                                                                           Complexity Analysis
+
+
+Time Complexity  :  O(n) 
+Space Complexity :  O(n)
+
+
+
+
+                                                                                               Testcases
+
+Testcase 1
+
+Input
+
+s = "ABAB"
+k = 2
+
+Output
+4
+Expected
+4
+
+Testcase 2
+
+Input
+
+s = "AABABBA"
+k = 1
+
+Output
+4
+Expected
+4
