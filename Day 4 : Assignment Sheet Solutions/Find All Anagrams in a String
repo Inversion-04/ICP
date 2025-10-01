@@ -1,0 +1,80 @@
+                                                                    Code
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        int l = 0;
+        int r = 0;
+        int n = s.length();
+        List<Integer> ds = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+
+        char[] b = p.toCharArray();
+        Arrays.sort(b);
+
+        while (r < n) {
+            char ch = s.charAt(r);
+            sb.append(ch);
+
+            while (sb.length() > p.length()) {
+                sb.deleteCharAt(0);
+                l++;
+            }
+
+            if (sb.length() == p.length()) {
+                char[] a = sb.toString().toCharArray();
+                Arrays.sort(a);
+                if (Arrays.equals(a, b)) {
+                    ds.add(l);
+                }
+            }
+            r++;
+
+        }
+        return ds;
+    }
+}
+
+
+
+
+
+
+
+                                                           Complexity Analysis
+
+
+
+Time Complexity  :  O(n * m log m)
+Space Complexity :  o(n)
+
+
+
+
+
+                                                                 Testcase
+
+
+
+Testcase 1
+
+Input
+
+s = "abab"
+p = "ab"
+
+Output
+[0,1,2]
+Expected
+[0,1,2]
+
+Testcase 2
+
+Input
+
+s = "cbaebabacd"
+p = "abc"
+
+Output
+[0,6]
+Expected
+[0,6]
