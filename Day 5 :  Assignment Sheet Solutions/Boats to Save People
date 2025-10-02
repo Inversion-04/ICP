@@ -1,0 +1,60 @@
+                                                                    Code
+
+
+class Solution {
+    public int numRescueBoats(int[] people, int limit) {
+        Arrays.sort(people);
+        int boats = 0;
+        int left = 0;
+        int right = people.length - 1;
+
+        while (left <= right) {
+            if (people[left] + people[right] <= limit) {
+                left++;
+                right--;
+            } else {
+                right--;
+            }
+            boats++;
+        }
+        return boats;
+
+    }
+}
+
+
+                                                               Complexity Analysis
+
+
+Time Complexity : O(nlogn)
+Space Complexity : O(1)
+
+
+                                                                    Testcases
+
+
+
+Testcase 1
+
+Input
+
+people = [1,2]
+limit = 3
+
+Output
+1
+Expected
+1
+
+
+Testcase 2
+
+Input
+
+people = [3,2,2,1]
+limit = 3
+
+Output
+3
+Expected
+3
