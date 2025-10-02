@@ -1,0 +1,61 @@
+                                                                    Code
+
+class Solution {
+    public boolean lemonadeChange(int[] bills) {
+        int five = 0;
+        int ten = 0;
+        for (int i = 0; i < bills.length; i++) {
+            if (bills[i] == 5) {
+                five++;
+            } else if (bills[i] == 10) {
+                if (five > 0) {
+                    five--;
+                    ten++;
+                } else {
+                    return false;
+                }
+            } else {
+                if (ten > 0 && five > 0) {
+                    five--;
+                    ten--;
+                } else if (five > 2) {
+                    five -= 3;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+
+                                                                  Complexity Analysis
+
+Time Complexity :  O(n)
+Space Complexity : O(1)
+
+
+
+                                                                        Testcases
+
+Testcase 1
+
+Input
+
+bills = [5,10,10,20]
+
+Output
+false
+Expected
+false
+
+
+Testcase 2
+
+bills = [5,5,10,10,20]
+
+Output
+false
+Expected
+false
