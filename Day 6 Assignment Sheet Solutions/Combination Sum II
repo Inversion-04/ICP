@@ -1,0 +1,70 @@
+                                                                                              Code
+
+class Solution {
+    public void helper(int idx,List<List<Integer>> list,ArrayList<Integer> ds,int target,int [] candidates, int n,boolean[] freq){
+        if(target==0){
+            list.add(new ArrayList<>(ds));
+            return;
+        }
+        if(target<0 || idx==n){
+            return;
+        }
+        for(int i=idx;i<candidates.length;i++){
+            if(!freq[i]){
+                if(i!=idx && candidates[i]==candidates[i-1] && !freq[i]) continue;
+                freq[i]=true;
+                ds.add(candidates[i]);
+                helper(i+1,list,ds,target-candidates[i],candidates,n,freq);
+                ds.remove(ds.size()-1);
+                freq[i]=false;
+
+            }
+        }
+        
+        
+
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> list=new ArrayList<>();
+        ArrayList<Integer> ds=new ArrayList<>();
+        boolean[] freq=new boolean[candidates.length];
+        int n=candidates.length;
+        helper(0,list,ds,target,candidates,n,freq);
+        return list;
+        
+    }
+}
+
+                                                                                             Complexity Analysis
+
+
+Time Complexity :   O(2^n * n)
+Space Complexity :  O(2^n * n)
+
+
+                                                                                                   Testcases
+
+Testcase 1
+
+Input
+
+candidates = [10,1,2,7,6,1,5]
+target = 8
+
+Output
+[[1,1,6],[1,2,5],[1,7],[2,6]]
+Expected
+[[1,1,6],[1,2,5],[1,7],[2,6]]
+
+Testcase 2
+
+Input
+
+candidates = [2,5,2,1,2]
+target = 5
+
+Output
+[[1,2,2],[5]]
+Expected
+[[1,2,2],[5]]
