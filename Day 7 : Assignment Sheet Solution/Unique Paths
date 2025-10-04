@@ -1,0 +1,57 @@
+                                                            Code
+
+class Solution {
+    public int helper(int cr, int cc, int[][] dp) {
+        if (cr == 0 && cc == 0) {
+            return 1;
+        }
+        if (cr < 0 || cc < 0) {
+            return 0;
+        }
+
+        if (dp[cr][cc] != -1) {
+            return dp[cr][cc];
+        }
+
+        return dp[cr][cc] = helper(cr, cc - 1, dp) + helper(cr - 1, cc, dp);
+    }
+
+    public int uniquePaths(int m, int n) {
+        int[][] dp = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        return helper(m - 1, n - 1, dp);
+    }
+}
+
+                                                         Complexity Analysis
+
+Time Complexity : O(m * n)
+Space Complexity: O(m * n)
+
+                                                            Testcases
+
+Testcase 1
+
+Input
+
+m = 3
+n = 7
+
+Output
+28
+Expected
+28
+
+Testcase 2
+
+Input
+
+m = 3
+n = 2
+
+Output
+3
+Expected
+3 
