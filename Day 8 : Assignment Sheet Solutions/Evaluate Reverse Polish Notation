@@ -36,16 +36,17 @@ class Solution {
         }
         return stack.pop();
     }
+}
 
 
-                                                                                    Complexity Analysis
+                                                                  Complexity Analysis
 
 
 TC : O(n)
 SC : O(n)
 
  
-                                                                                            Testcases
+                                                                      Testcases
 
 Testcase 1
 
@@ -68,4 +69,4 @@ Output
 Expected
 6
 
-}
+
